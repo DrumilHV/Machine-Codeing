@@ -1,6 +1,6 @@
 $(document).ready(function () {
   $("body").css("background-color", "");
-  console.log("jQuery Loaded!"); // Consider using non-offensive language in production code.
+  console.log("jQuery Loaded!");
 });
 
 let objs = [];
@@ -8,9 +8,12 @@ let open;
 
 // Function to display details for an object
 function display(obj) {
-  console.log("here in display", objs);
-
   // Remove the previous open paragraph if one exists
+  if (obj.key === open) {
+    $(`#${open}`).children("p").last().remove();
+    open = undefined;
+    return;
+  }
   if (open !== undefined) {
     $(`#${open}`).children("p").last().remove();
   }
@@ -50,6 +53,7 @@ function makeAccordian() {
 function doit() {
   console.log("here in doit");
   // Use .val() to get the input values
+
   const key = $("#key").val();
   const value = $("#value").val();
 
